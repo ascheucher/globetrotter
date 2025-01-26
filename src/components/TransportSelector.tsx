@@ -29,12 +29,6 @@ export default function TransportSelector() {
     <div className="p-4">
       <h2 className="text-xl font-bold mb-4">Random Transport Selector</h2>
       <div className="flex flex-col items-center justify-center gap-8 min-h-screen">
-        <button
-          onClick={selectRandom}
-          className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-        >
-          Select Transport
-        </button>
         <div className="p-8 border-2 border-gray-300 rounded-lg">
           <div
             key={timestamp}
@@ -47,20 +41,27 @@ export default function TransportSelector() {
         <style>{`
           .animate-spin-scale {
             animation: spinAndScale 0.5s ease-in-out;
-          }
-          
-          @keyframes spinAndScale {
-            0% {
-              transform: scale(1) rotate(0deg);
             }
-            50% {
-              transform: scale(1.2) rotate(180deg);
+            
+            @keyframes spinAndScale {
+              0% {
+                transform: scale(1) rotate(0deg);
+              }
+              50% {
+                transform: scale(1.2) rotate(180deg);
+              }
+              100% {
+                transform: scale(1) rotate(360deg);
+              }
             }
-            100% {
-              transform: scale(1) rotate(360deg);
-            }
-          }
-        `}</style>
+          `}
+        </style>
+        <button
+          onClick={selectRandom}
+          className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+        >
+          Select Transport
+        </button>
       </div>
     </div>
   );
