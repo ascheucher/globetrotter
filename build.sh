@@ -1,1 +1,1 @@
-docker build -t worldtravel-game .
+docker build -t globetrotter .

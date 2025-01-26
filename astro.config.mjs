@@ -7,7 +7,7 @@ import tailwind from '@astrojs/tailwind';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://ascheucher.github.io',
-  base: 'worldtravel-game',
+  base: 'globetrotter',
   integrations: [
     react(),
     tailwind()
