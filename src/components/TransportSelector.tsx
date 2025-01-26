@@ -19,6 +19,17 @@ export default function TransportSelector() {
     }
   };
 
+  const getSteps = (type: string | null) => {
+    switch (type) {
+      case 'train': return "1 - 6";
+      case 'bus': return "1 - 4";
+      case 'plane': return "Airport Karte";
+      case 'ship': return "1 - 3";
+      case 'hike': return "1 - 2";
+      default: return "Drücke auf Auswahl";
+    }
+  };
+
   const selectRandom = () => {
     const randomIndex = Math.floor(Math.random() * options.length);
     setSelected(options[randomIndex]);
@@ -26,9 +37,13 @@ export default function TransportSelector() {
   };
 
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-bold mb-4">Random Transport Selector</h2>
-      <div className="flex flex-col items-center justify-center gap-8 min-h-screen">
+    <div className="p-4 h-dvh  flex flex-col">
+      <div className="min-h-1/3 items-center flex-grow">
+
+        <h2 className="text-xl font-bold mb-4 text-center">Globetrotter</h2>
+        <h3 className="text-l mb-4 text-center">Erkunde die Welt</h3>
+      </div>
+      <div className="flex flex-col items-center justify-center gap-8 min-h-1/3 flex-grow">
         <div className="p-8 border-2 border-gray-300 rounded-lg">
           <div
             key={timestamp}
@@ -37,7 +52,13 @@ export default function TransportSelector() {
             {getIcon(selected)}
           </div>
         </div>
-
+        <div>
+          <div
+            key={timestamp}
+            className="transform transition-all duration-500 ease-in-out animate-spin-scale">
+            {getSteps(selected)}
+          </div>
+        </div>
         <style>{`
           .animate-spin-scale {
             animation: spinAndScale 0.5s ease-in-out;
@@ -60,8 +81,11 @@ export default function TransportSelector() {
           onClick={selectRandom}
           className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
         >
-          Select Transport
+          Auswahl
         </button>
+      </div>
+      <div className="min-h-1/3 flex-grow">
+        <p className='p-4 text-center'>Eine kleine App, die das Drehen am Pfeil, zur Auswahl des Verkehrsmittels, digitalisiert.</p>
       </div>
     </div>
   );
