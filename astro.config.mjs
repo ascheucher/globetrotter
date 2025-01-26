@@ -6,6 +6,8 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://ascheucher.github.io',
+  base: 'worldtravel-game',
   integrations: [
     react(),
     tailwind()
@@ -19,7 +21,10 @@ export default defineConfig({
   vite: {
     server: {
       host: true,
-      allowedHosts: ['mini-01.hill.eremite.cc']
+      allowedHosts: [
+        'mini-01.hill.eremite.cc',
+        'docker-host-01'
+      ]
     }
   }
 });
