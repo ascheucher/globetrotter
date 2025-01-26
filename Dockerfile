@@ -19,7 +19,7 @@ COPY . .
 RUN pnpm build
 
 # Expose port
-EXPOSE 4321
+EXPOSE 3000
 
 # Start the application
 CMD ["pnpm", "preview", "--host"]

@@ -17,18 +17,18 @@ docker run \
   --restart unless-stopped \
   --name worldtravel-game \
   --network internal-docker-net \
-  -p 4321:4321 \
+  -p 3000:3000 \
   worldtravel-game
 ```
 
-nginx config section:
+Nginx config section for *~/docker-server-env/docker-compose-ephemeral/nginx-reverse-proxy/nginx.conf*:
 
 ```nginx
     ############################################
     #     worldtravel-game section
 
     upstream worldtravel-game {
-        server worldtravel-game:4321;
+        server worldtravel-game:3000;
     }
     server {
         listen 80;
@@ -51,4 +51,17 @@ nginx config section:
     }
 ```
 
-Finally, add the domain to the **root's** *~/dockerized-certbot/domains-env* file and create ths TLS certificates.
+Restart nginx:
+
+```bash
+sudo systemctl restart docker-compose-ephemeral@nginx-reverse-proxy.service
+sudo systemctl status docker-compose-ephemeral@nginx-reverse-proxy.service
+```
+
+Add the domain to the **root's** *~/dockerized-certbot/domains-env* file and create ths TLS certificates.
+
+Finally add the DNS entries:
+
+```bash
+samba-tool dns add localhost hill.eremite.cc worldtravel-game CNAME docker-host-01.hill.eremite.cc -U Administrator
+```
