@@ -21,3 +21,11 @@ Hosted with GitHub pages at [https://ascheucher.github.io/globetrotter/](https:/
 * [Astro](https://astro.build/)
 * [Tailwind](https://tailwindcss.com/)
 * [Lucide Icons](https://lucide.dev/icons/)
+
+## Background
+
+The spinner wheel of the game, got stuck often and the distribution of travel
+methods had'nt been very random.
+
+Hence, I thought to use it as opportunity to build a little Astro.js / React
+app to test building with Claude.ai / Cine in VSC.

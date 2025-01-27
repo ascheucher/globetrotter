@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Bus, Plane, Ship, TrainFront, Dices, Footprints } from 'lucide-react';
+import { Bus, Plane, Ship, TrainFront, Dices, Footprints, Sun, Moon } from 'lucide-react';
 
 export default function TransportSelector() {
 
@@ -37,14 +37,24 @@ export default function TransportSelector() {
   };
 
   return (
-    <div className="p-4 h-dvh  flex flex-col">
+    <div className="p-4 h-dvh flex flex-col dark:bg-gray-900">
+      <div className="absolute top-4 right-4">
+        <button
+          onClick={() => (window as any).toggleTheme()}
+          className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          aria-label="Toggle theme"
+        >
+          <Sun className="hidden dark:block" size={24} />
+          <Moon className="block dark:hidden" size={24} />
+        </button>
+      </div>
       <div className="min-h-1/3 items-center flex-grow">
 
-        <h2 className="text-xl font-bold mb-4 text-center">Globetrotter</h2>
-        <h3 className="text-l mb-4 text-center">Erkunde die Welt</h3>
+        <h2 className="text-xl font-bold mb-4 text-center dark:text-white">Globetrotter</h2>
+        <h3 className="text-l mb-4 text-center dark:text-gray-300">Erkunde die Welt</h3>
       </div>
       <div className="flex flex-col items-center justify-center gap-8 min-h-1/3 flex-grow">
-        <div className="p-8 border-2 border-gray-300 rounded-lg">
+        <div className="p-8 border-2 border-gray-300 dark:border-gray-700 rounded-lg dark:text-white">
           <div
             key={timestamp}
             className="transform transition-all duration-500 ease-in-out animate-spin-scale"
@@ -79,13 +89,13 @@ export default function TransportSelector() {
         </style>
         <button
           onClick={selectRandom}
-          className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+          className="px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-700 transition-colors"
         >
-          Auswahl
+          Womit fahre ich?
         </button>
       </div>
       <div className="min-h-1/3 flex-grow">
-        <p className='p-4 text-center'>Eine kleine App, die das Drehen am Pfeil, zur Auswahl des Verkehrsmittels, digitalisiert.</p>
+        <p className='p-4 text-center dark:text-gray-300'>Eine kleine App, die das Drehen am Pfeil, zur Auswahl des Verkehrsmittels, digitalisiert.</p>
       </div>
     </div>
   );
