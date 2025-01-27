@@ -47,8 +47,8 @@ export default function TransportSelector() {
           className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           aria-label="Toggle theme"
         >
-          <Sun id='themeDark' size={24} />
-          <Moon id='themeLight' size={24} />
+          <Sun id='themeDark' className="dark:text-white" size={24} />
+          <Moon id='themeLight' className=' dark:text-white' size={24} />
         </button>
       </div>
       <div className="min-h-1/3 items-center flex-grow">
@@ -68,7 +68,7 @@ export default function TransportSelector() {
         <div>
           <div
             key={timestamp}
-            className="transform transition-all duration-500 ease-in-out animate-spin-scale">
+            className="transform transition-all duration-500 ease-in-out animate-spin-scale dark:text-white">
             {getSteps(selected)}
           </div>
         </div>
