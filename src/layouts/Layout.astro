@@ -1,73 +1,55 @@
 <!doctype html>
-<html lang="en" class="light">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/globetrotter/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
-    <title>Globetrotter</title>
+    <link rel="stylesheet" href="/globetrotter/globetrotter.css" />
     <script is:inline>
-      // Check system preference and localStorage
-      const getInitialTheme = () => {
-        if (
-          typeof localStorage !== "undefined" &&
-          localStorage.getItem("theme")
-        ) {
-          return localStorage.getItem("theme");
+      function applyTheme(theme) {
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
         }
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          return "dark";
-        }
-        return "light";
-      };
-
-      // Apply theme on load
-      const theme = getInitialTheme();
-      document.documentElement.className = theme || "light";
-
-      // Listen for system preference changes
+        localStorage.setItem("theme", theme);
+      }
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) {
+        applyTheme(savedTheme);
+      } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        applyTheme("dark");
+      } else {
+        applyTheme("light");
+      }
       window
         .matchMedia("(prefers-color-scheme: dark)")
         .addEventListener("change", (e) => {
-          if (!localStorage.getItem("theme")) {
-            document.documentElement.className = e.matches ? "dark" : "light";
-          }
+          // if (!localStorage.getItem("theme")) {
+          applyTheme(e.matches ? "dark" : "light");
+          // }
         });
-
-      // Expose theme toggle function globally
       window.toggleTheme = function () {
-        const currentTheme = document.documentElement.className;
-        const newTheme = currentTheme === "dark" ? "light" : "dark";
-        document.documentElement.className = newTheme;
-        localStorage.setItem("theme", newTheme);
+        const newTheme = document.documentElement.classList.contains("dark")
+          ? "light"
+          : "dark";
+        applyTheme(newTheme);
+        console.log(`toggle theme to ${newTheme}`);
       };
     </script>
+    <title>Globetrotter</title>
   </head>
   <body>
     <slot />
   </body>
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
 </html>
-
-<style>
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  /* Light mode colors */
-  html.light {
-    background-color: hsl(228 33% 96%);
-    color: hsl(228 33% 9%);
-  }
-
-  /* Dark mode colors */
-  html.dark {
-    background-color: hsl(228 33% 9%);
-    color: hsl(228 33% 96%);
-  }
-</style>

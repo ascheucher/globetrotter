@@ -1,0 +1,15 @@
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+html #themeLight {
+  display: block;
+}
+html #themeDark {
+  display: none;
+}
+
+html.dark #themeLight {
+  display: none;
+}
+html.dark #themeDark {
+  display: block;
+}
