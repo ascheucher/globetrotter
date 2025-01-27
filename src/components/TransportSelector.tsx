@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Bus, Plane, Ship, TrainFront, Dices, Footprints, Sun, Moon } from 'lucide-react';
+import { integer, MersenneTwister19937 } from 'random-js';
 
 export default function TransportSelector() {
 
@@ -7,6 +8,9 @@ export default function TransportSelector() {
   const [timestamp, setTimestamp] = useState(0);
 
   const options = ['hike', 'plane', 'hike', 'train', 'hike', 'ship', 'hike', 'bus'];
+
+  const engine = MersenneTwister19937.autoSeed();
+  const distribution = integer(0, 7);
 
   const getIcon = (type: string | null) => {
     switch (type) {
@@ -31,8 +35,7 @@ export default function TransportSelector() {
   };
 
   const selectRandom = () => {
-    const randomIndex = Math.floor(Math.random() * options.length);
-    setSelected(options[randomIndex]);
+    setSelected(options[distribution(engine)]);
     setTimestamp(Date.now());
   };
 
